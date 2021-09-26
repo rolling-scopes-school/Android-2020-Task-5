@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Programs Installed/Android Projects/Android-2020-Task-5/app/src/main/res/layout/activity_main.xml" value="0.2033514492753623" />
+        <entry key="..\:/Programs Installed/Android Projects/RSShool2021-Android-task-CatAPI/app/src/main/res/layout/activity_main.xml" value="0.17961654894046417" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
