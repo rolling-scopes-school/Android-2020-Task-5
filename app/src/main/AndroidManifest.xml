@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RSShool2021AndroidtaskCatAPI">
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
