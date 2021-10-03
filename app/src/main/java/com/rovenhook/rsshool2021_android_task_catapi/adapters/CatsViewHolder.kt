@@ -1,8 +1,10 @@
 package com.rovenhook.rsshool2021_android_task_catapi.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.drawToBitmap
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.size.Scale
@@ -12,13 +14,14 @@ import com.bumptech.glide.Glide
 import com.rovenhook.rsshool2021_android_task_catapi.R
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
 import com.rovenhook.rsshool2021_android_task_catapi.databinding.CatItemBinding
+import com.rovenhook.rsshool2021_android_task_catapi.listeners.OnSmallImageClickListener
 
 class CatsViewHolder(
-    private val binding: CatItemBinding
+    private val binding: CatItemBinding,
+    private val onSmallImageClickListener: OnSmallImageClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(cat: CatsApiData, position: Int, context: Context) {
-
+    fun bind(cat: CatsApiData) {
         binding.imageViewCat.load(cat.url) {
             crossfade(250)
             placeholder(R.drawable.temp_filler)
@@ -26,8 +29,15 @@ class CatsViewHolder(
             transformations(RoundedCornersTransformation())
         }
 
+        // click to enlarge the photo
         binding.imageViewCat.setOnClickListener {
-            Toast.makeText( context, "position ${position}", Toast.LENGTH_SHORT).show()
+            onSmallImageClickListener.onSmallImageClick(binding.imageViewCat)
+        }
+
+        binding.imageViewCat.setOnLongClickListener {
+            Log.i("log-tag", "long click")
+            binding.imageViewCat.drawable
+            true
         }
     }
 }

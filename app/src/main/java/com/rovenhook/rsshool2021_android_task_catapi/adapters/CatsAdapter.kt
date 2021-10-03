@@ -8,23 +8,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
 import com.rovenhook.rsshool2021_android_task_catapi.databinding.CatItemBinding
+import com.rovenhook.rsshool2021_android_task_catapi.listeners.OnSmallImageClickListener
 
 class CatsAdapter(
-    val onReachEndListener: OnReachEndListener,
-    val context: Context
+    private val onSmallImageClickListener: OnSmallImageClickListener
 ) : ListAdapter<CatsApiData, CatsViewHolder>(itemComporator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = CatItemBinding.inflate(layoutInflater)
-        return CatsViewHolder(binding)
+        return CatsViewHolder(binding, onSmallImageClickListener)
     }
 
     override fun onBindViewHolder(holder: CatsViewHolder, position: Int) {
-        if (position == currentList.size - 3) {
-            onReachEndListener.onReachEnd()
-        }
-        holder.bind(getItem(position), position, context)
+        holder.bind(getItem(position))
     }
 
     companion object {
@@ -36,7 +33,6 @@ class CatsAdapter(
             override fun areContentsTheSame(oldItem: CatsApiData, newItem: CatsApiData): Boolean {
                 return oldItem.url == newItem.url
             }
-
         }
     }
 }
