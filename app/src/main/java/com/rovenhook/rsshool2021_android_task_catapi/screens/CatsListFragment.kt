@@ -1,6 +1,7 @@
 package com.rovenhook.rsshool2021_android_task_catapi.screens
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,10 +33,6 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
     private var catList: ArrayList<CatsApiData> = arrayListOf()
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +41,12 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
 
         val adapter = CatsAdapter(this as OnSmallImageClickListener)
         binding.recyclerViewCats.adapter = adapter
-        binding.recyclerViewCats.layoutManager = GridLayoutManager(context, 2)
+        val spanCount = when {
+            this.getResources()
+                .getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT -> 2
+            else -> 3
+        }
+        binding.recyclerViewCats.layoutManager = GridLayoutManager(context, spanCount)
 
         viewModel.getAllCats().observe(viewLifecycleOwner, {
             catList.addAll(it)
@@ -64,13 +66,7 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
     }
 
     fun getCats() {
-        try {
-            viewModel.getMoreCats()
-        } catch (e: SocketTimeoutException) {
-            Toast.makeText(activity, "Server is not responding", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            Toast.makeText(activity, "App is not responding", Toast.LENGTH_LONG).show()
-        }
+        viewModel.getMoreCats()
     }
 
     override fun onSmallImageClick(imageView: ImageView) {

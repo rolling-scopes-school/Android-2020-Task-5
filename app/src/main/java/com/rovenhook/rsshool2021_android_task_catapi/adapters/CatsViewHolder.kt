@@ -33,11 +33,5 @@ class CatsViewHolder(
         binding.imageViewCat.setOnClickListener {
             onSmallImageClickListener.onSmallImageClick(binding.imageViewCat)
         }
-
-        binding.imageViewCat.setOnLongClickListener {
-            Log.i("log-tag", "long click")
-            binding.imageViewCat.drawable
-            true
-        }
     }
 }
