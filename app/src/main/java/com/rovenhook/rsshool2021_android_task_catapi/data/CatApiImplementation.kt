@@ -2,8 +2,7 @@ package com.rovenhook.rsshool2021_android_task_catapi.data
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object CatApiImplementation {

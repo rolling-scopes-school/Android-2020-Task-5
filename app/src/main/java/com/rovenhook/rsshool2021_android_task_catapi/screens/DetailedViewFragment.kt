@@ -1,35 +1,24 @@
 package com.rovenhook.rsshool2021_android_task_catapi.screens
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.graphics.drawable.toBitmap
-import coil.api.load
-import com.rovenhook.rsshool2021_android_task_catapi.databinding.FragmentDetailedViewBinding
-import java.lang.Exception
-import android.os.Environment
-import android.provider.MediaStore
-import java.io.File
-import java.io.FileOutputStream
-import android.content.ContentValues
-
-import android.content.ContentResolver
-import android.content.pm.PackageManager
-import android.net.Uri
-
-import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
-import java.io.OutputStream
-import java.text.SimpleDateFormat
+import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.Fragment
+import coil.api.load
+import com.rovenhook.rsshool2021_android_task_catapi.databinding.FragmentDetailedViewBinding
+import java.io.File
+import java.io.FileOutputStream
 
 
 class DetailedViewFragment(private val imageView: ImageView) : Fragment() {

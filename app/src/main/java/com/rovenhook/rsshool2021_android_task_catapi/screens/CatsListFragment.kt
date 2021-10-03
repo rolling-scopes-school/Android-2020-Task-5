@@ -1,29 +1,21 @@
 package com.rovenhook.rsshool2021_android_task_catapi.screens
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rovenhook.rsshool2021_android_task_catapi.R
 import com.rovenhook.rsshool2021_android_task_catapi.adapters.CatsAdapter
-import com.rovenhook.rsshool2021_android_task_catapi.data.CatApiImplementation
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
 import com.rovenhook.rsshool2021_android_task_catapi.databinding.FragmentCatsListBinding
 import com.rovenhook.rsshool2021_android_task_catapi.listeners.OnSmallImageClickListener
 import com.rovenhook.rsshool2021_android_task_catapi.viewmodels.CatsViewModel
-import java.lang.Exception
-import java.net.SocketTimeoutException
 
 class CatsListFragment : Fragment(), OnSmallImageClickListener {
     private var _binding: FragmentCatsListBinding? = null
