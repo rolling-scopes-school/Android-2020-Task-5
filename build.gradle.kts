@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.contracts.model.structure.UNKNOWN_COMPUTATION.type
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -5,8 +7,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        classpath("com.android.tools.build:gradle:7.0.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -14,12 +16,12 @@ buildscript {
 }
 
 plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.18.1"
-    id "org.jlleitschuh.gradle.ktlint" version "10.2.0"
+    id("io.gitlab.arturbosch.detekt") version "1.18.1"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 
 subprojects {
-    apply plugin: "org.jlleitschuh.gradle.ktlint" // Version should be inherited from parent
+    apply (plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
 
     repositories {
         // Required to download KtLint
@@ -27,8 +29,8 @@ subprojects {
     }
 
     // Optionally configure plugin
-    ktlint {
-        debug = false
+    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        debug.set(false)
     }
 }
 
@@ -39,10 +41,7 @@ detekt {
 
     // The directories where detekt looks for source files.
     // Defaults to `files("src/main/java", "src/test/java", "src/main/kotlin", "src/test/kotlin")`.
-    source = files(
-            "src/main/kotlin",
-            "gensrc/main/kotlin"
-    )
+    source = files("src/main/java", "src/main/kotlin")
 
     // Builds the AST in parallel. Rules are always executed in parallel.
     // Can lead to speedups in larger projects. `false` by default.
@@ -73,29 +72,48 @@ detekt {
     ignoreFailures = false
 
     // Android: Don't create tasks for the specified build types (e.g. "release")
-    ignoredBuildTypes = ["release"]
+    ignoredBuildTypes = listOf("release")
 
     // Android: Don't create tasks for the specified build flavor (e.g. "production")
-    ignoredFlavors = ["production"]
+    ignoredFlavors = listOf("production")
 
     // Android: Don't create tasks for the specified build variants (e.g. "productionRelease")
-    ignoredVariants = ["productionRelease"]
+    ignoredVariants = listOf("productionRelease")
 
     // Specify the base path for file paths in the formatted reports.
     // If not set, all file paths reported will be absolute file path.
-    basePath = projectDir
+    basePath = projectDir.toString()
 
     reports {
+        // Enable/Disable XML report (default: true)
+        xml {
+            enabled = true
+            destination = file("build/reports/detekt/detekt.xml")
+        }
         // Enable/Disable HTML report (default: true)
         html {
             enabled = true
             destination = file("build/reports/detekt/detekt.html")
         }
+        // Enable/Disable TXT report (default: true)
+        txt {
+            enabled = true
+            destination = file("build/reports/detekt/detekt.txt")
+        }
+        // Enable/Disable SARIF report (default: false)
+        sarif {
+            enabled = true
+            destination = file("build/reports/detekt/detekt.sarif")
+        }
+        custom {
+            // The simple class name of your custom report.
+            reportId = "CustomJsonReport"
+            destination = file("build/reports/detekt.json")
+        }
     }
 }
 
 
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}

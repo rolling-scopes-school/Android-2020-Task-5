@@ -15,7 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
-import coil.api.load
+import coil.load
 import com.rovenhook.rsshool2021_android_task_catapi.databinding.FragmentDetailedViewBinding
 import java.io.File
 import java.io.FileOutputStream

@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "RSShool2021-Android-task-CatAPI"
-include ':app'
+include(":app")

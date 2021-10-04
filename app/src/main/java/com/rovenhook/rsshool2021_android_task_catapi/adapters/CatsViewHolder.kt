@@ -1,7 +1,7 @@
 package com.rovenhook.rsshool2021_android_task_catapi.adapters
 
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.rovenhook.rsshool2021_android_task_catapi.R
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
