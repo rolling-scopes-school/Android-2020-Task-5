@@ -20,7 +20,6 @@ import com.rovenhook.rsshool2021_android_task_catapi.databinding.FragmentDetaile
 import java.io.File
 import java.io.FileOutputStream
 
-
 class DetailedViewFragment(private val imageView: ImageView) : Fragment() {
     private val writeStorageRequestCode: Int = 69
     private var _binding: FragmentDetailedViewBinding? = null
@@ -28,7 +27,8 @@ class DetailedViewFragment(private val imageView: ImageView) : Fragment() {
         get() = _binding ?: throw Exception("Binding error")
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailedViewBinding.inflate(inflater, container, false)
@@ -57,7 +57,11 @@ class DetailedViewFragment(private val imageView: ImageView) : Fragment() {
         } else {
             Toast.makeText(requireContext(), "Allow Access to save", Toast.LENGTH_LONG).show()
             val wesp = Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(wesp), writeStorageRequestCode)
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(wesp),
+                writeStorageRequestCode
+            )
         }
     }
 

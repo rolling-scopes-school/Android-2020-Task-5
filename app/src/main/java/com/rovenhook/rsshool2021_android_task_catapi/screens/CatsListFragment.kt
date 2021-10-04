@@ -24,9 +24,9 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
     private val viewModel: CatsViewModel by viewModels()
     private var catList: ArrayList<CatsApiData> = arrayListOf()
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCatsListBinding.inflate(inflater, container, false)
@@ -67,7 +67,8 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
                 R.animator.card_flip_right_in,
                 R.animator.card_flip_right_out,
                 R.animator.card_flip_left_in,
-                R.animator.card_flip_left_out)
+                R.animator.card_flip_left_out
+            )
             .replace(R.id.mainContainer, DetailedViewFragment(imageView))
             .addToBackStack(null)
             .commit()
