@@ -1,0 +1,26 @@
+<resources>
+    <!-- API Settings -->
+    <string-array name="order_entries">
+        <item>Ascending</item>
+        <item>Descending</item>
+        <item>Random</item>
+    </string-array>
+
+    <string-array name="order_values">
+        <item>asc</item>
+        <item>desc</item>
+        <item>random</item>
+    </string-array>
+
+    <string-array name="mime_types_entries">
+        <item>JPG, PNG</item>
+        <item>GIF</item>
+        <item>All(JPG, PNG, GIF)</item>
+    </string-array>
+
+    <string-array name="mime_types_values">
+        <item>jpg,png</item>
+        <item>gif</item>
+        <item>jpg,png,gif</item>
+    </string-array>
+</resources>
