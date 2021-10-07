@@ -1,4 +1,4 @@
-package com.omelchenkoaleks.thecatapi.ui
+package com.omelchenkoaleks.thecatapi.ui.gallery
 
 import android.content.Context
 import android.os.Bundle

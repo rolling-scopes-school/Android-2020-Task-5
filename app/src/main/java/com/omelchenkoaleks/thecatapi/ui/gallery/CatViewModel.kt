@@ -1,4 +1,4 @@
-package com.omelchenkoaleks.thecatapi.ui
+package com.omelchenkoaleks.thecatapi.ui.gallery
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
