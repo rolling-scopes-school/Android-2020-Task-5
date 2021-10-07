@@ -2,6 +2,7 @@ package com.omelchenkoaleks.thecatapi
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.omelchenkoaleks.thecatapi.ui.listener.ItemClickListener
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     }
 
     override fun onItemClick(url: String?) {
-        navController?.navigate(R.id.action_fragmentCatGallery_to_catDetailFragment)
+        navController?.navigate(R.id.action_fragmentCatGallery_to_catDetailFragment, bundleOf(URL to url))
+    }
+
+    companion object {
+        const val URL = "url"
     }
 }

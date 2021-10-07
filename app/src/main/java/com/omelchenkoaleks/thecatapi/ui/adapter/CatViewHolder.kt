@@ -28,6 +28,7 @@ class CatViewHolder(
             .into(imgCat)
 
         itemView.setOnClickListener {
+            // pass url image to detail fragment
             itemClickListener?.onItemClick(cat?.url)
         }
     }

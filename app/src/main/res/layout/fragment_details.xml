@@ -8,6 +8,7 @@
     tools:context=".ui.detail.CatDetailFragment">
 
     <ImageView
+        android:id="@+id/img_single_cat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"
