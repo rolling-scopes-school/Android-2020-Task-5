@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentCatGallery">
+
+    <fragment
+        android:id="@+id/fragmentCatGallery"
+        android:name="com.omelchenkoaleks.thecatapi.ui.gallery.FragmentCatGallery"
+        android:label="fragment_cat_gallery"
+        tools:layout="@layout/fragment_cat_gallery">
+        <action
+            android:id="@+id/action_fragmentCatGallery_to_catDetailFragment"
+            app:destination="@id/catDetailFragment"
+            app:enterAnim="@anim/flip_in"
+            app:exitAnim="@anim/flip_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/catDetailFragment"
+        android:name="com.omelchenkoaleks.thecatapi.ui.detail.CatDetailFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+</navigation>
