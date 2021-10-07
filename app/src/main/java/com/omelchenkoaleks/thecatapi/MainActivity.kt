@@ -19,7 +19,10 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     }
 
     override fun onItemClick(url: String?) {
-        navController?.navigate(R.id.action_fragmentCatGallery_to_catDetailFragment, bundleOf(URL to url))
+        navController?.navigate(
+            R.id.action_fragmentCatGallery_to_catDetailFragment,
+            bundleOf(URL to url)
+        )
     }
 
     companion object {

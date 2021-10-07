@@ -24,6 +24,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 
+@Suppress("ImplicitThis")
 class CatDetailFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null
@@ -57,12 +58,13 @@ class CatDetailFragment : Fragment() {
             .into(imgSingleCat)
 
         saveButton?.setOnClickListener {
-            if (!isPermissionGranted(requireContext())) com.omelchenkoaleks.thecatapi.utils.requestPermissions(
+            if (!isPermissionGranted(requireContext())) requestPermissions(
                 requireContext()
             )
             val fileName = File(url).name
             val folderName = FOLDER_NAME
             CoroutineScope(Dispatchers.IO).launch {
+                @Suppress("BlockingMethodInNonBlockingContext")
                 if (saveImage(
                         Glide.with(requireActivity())
                             .asBitmap()
@@ -86,10 +88,9 @@ class CatDetailFragment : Fragment() {
     private fun saveImage(
         image: Bitmap,
         fileName: String,
-        folderName: String = ""
+        @Suppress("SameParameterValue") folderName: String = ""
     ): String? {
         var savedImagePath: String? = null
-
         val storageDir = File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
                 .toString() + "/" + folderName
