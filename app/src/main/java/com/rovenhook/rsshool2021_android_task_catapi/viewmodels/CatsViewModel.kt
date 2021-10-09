@@ -15,9 +15,7 @@ import java.net.SocketTimeoutException
 
 class CatsViewModel : ViewModel() {
     private var page: Int = 0
-
-    private val _items = MutableLiveData<List<CatsApiData>>()
-    val items: LiveData<List<CatsApiData>> get() = _items
+    private val items = MutableLiveData<List<CatsApiData>>(listOf())
 
     fun getAllCats() = items
 
@@ -31,7 +29,7 @@ class CatsViewModel : ViewModel() {
                         delay(6000)
                     }
                 }
-                _items.value = temp
+                items.value = temp
                 page++
             } catch (e: SocketTimeoutException) {
                 e.printStackTrace()
@@ -41,3 +39,38 @@ class CatsViewModel : ViewModel() {
         }
     }
 }
+
+
+
+
+
+
+
+//class CatsViewModel : ViewModel() {
+//    private var page: Int = 0
+//
+//    private val _items = MutableLiveData<List<CatsApiData>>()
+//    val items: LiveData<List<CatsApiData>> get() = _items
+//
+//    fun getAllCats() = items
+//
+//    fun getMoreCats(repository: Repository) {
+//        viewModelScope.launch() {
+//            try {
+//                var temp: List<CatsApiData> = listOf()
+//                while (temp.size <= 0) {
+//                    temp = repository.getMoreCats(page)
+//                    if (temp.size <= 0) {
+//                        delay(6000)
+//                    }
+//                }
+//                _items.value = temp
+//                page++
+//            } catch (e: SocketTimeoutException) {
+//                e.printStackTrace()
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+//        }
+//    }
+//}

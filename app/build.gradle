@@ -1,6 +1,6 @@
 plugins {
-    id "com.android.application"
-    id "kotlin-android"
+    id("com.android.application")
+    id("kotlin-android")
     id("de.mannodermaus.android-junit5")
 }
 
@@ -29,6 +29,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    // Add Kotlin source directory to all source sets
+    sourceSets.each {
+        it.java.srcDirs += "src/$it.name/kotlin"
+        it.java.srcDirs += "src/$it.name/java"
     }
 
     testOptions {
@@ -94,18 +100,16 @@ dependencies {
     def spek_version = "2.0.17"
     def kotlin_version = "1.5.31"
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    // spek
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
-    // spek requires kotlin-reflect, omit when already in classpath
     testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    testRuntimeOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
 
-    // JUnit5 for spek
+    // JUnit 5
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.0")
     testImplementation("junit:junit:4.13.2")
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.8.0")
-
 }

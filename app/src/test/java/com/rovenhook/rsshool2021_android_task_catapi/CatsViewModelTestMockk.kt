@@ -1,6 +1,5 @@
 package com.rovenhook.rsshool2021_android_task_catapi
 
-import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
@@ -24,10 +23,7 @@ import org.junit.Before
 import org.junit.Test
 
 
-class ExampleUnitTest {
-    //    val viewModelTest: CatsViewModel = CatsViewModel()
-    var livedataTest: LiveData<List<CatsApiData>> =
-        MutableLiveData<List<CatsApiData>>(arrayListOf(CatsApiData("id1", "url1")))
+class CatsViewModelTestMockk {
 
     @MockK
     val repositoryMock: Repository = mockk<Repository>()
@@ -45,12 +41,14 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun callAllCatsAndZeroList() {
+    fun callAllCatsResultsInZeroList() {
+        var livedataTest: LiveData<List<CatsApiData>> =
+            MutableLiveData<List<CatsApiData>>(arrayListOf(CatsApiData("id1", "url1")))
         val viewModelTest: CatsViewModel = CatsViewModel()
 
         livedataTest = viewModelTest.getAllCats()
 
-        assertEquals(livedataTest, viewModelTest.items)
+        assertEquals(0, livedataTest.value?.size)
     }
 
     @Test
@@ -68,12 +66,12 @@ class ExampleUnitTest {
         }
 
         viewModelTest.getMoreCats(repositoryMock)
-        var size = 0
+        var testSize = 0
         runBlockingTest {
-            size = repositoryMock.getMoreCats(0).size
+            testSize = repositoryMock.getMoreCats(0).size
         }
 
-        assertEquals(2, size)
+        assertEquals(2, testSize)
     }
 
     @After

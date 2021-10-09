@@ -6,6 +6,7 @@ buildscript {
         google()
         mavenCentral()
     }
+
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
@@ -19,7 +20,7 @@ buildscript {
 plugins {
     id("io.gitlab.arturbosch.detekt") version "1.18.1"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
-//    id("de.mannodermaus.android-junit5")
+//    id("de.mannodermaus.android-junit5") version "1.8.0.0"
 }
 
 subprojects {
@@ -35,6 +36,7 @@ subprojects {
         debug.set(false)
     }
 }
+
 
 detekt {
     // Version of Detekt that will be used. When unspecified the latest detekt
