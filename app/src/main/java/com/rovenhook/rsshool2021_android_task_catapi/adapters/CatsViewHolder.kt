@@ -13,7 +13,7 @@ class CatsViewHolder(
     private val onSmallImageClickListener: OnSmallImageClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(cat: CatsApiData, position: Int) {
+    fun bind(cat: CatsApiData) {
         binding.imageViewCat.load(cat.url) {
             crossfade(250)
             placeholder(R.drawable.temp_filler)

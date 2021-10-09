@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import coil.load
+import com.rovenhook.rsshool2021_android_task_catapi.R
 import com.rovenhook.rsshool2021_android_task_catapi.databinding.FragmentDetailedViewBinding
 import java.io.File
 import java.io.FileOutputStream
@@ -75,7 +75,7 @@ class DetailedViewFragment(private val imageView: ImageView) : Fragment() {
 
         var outputStream: FileOutputStream? = null
 
-        val filename = String.format("%d.png", System.currentTimeMillis())
+        val filename = String.format(getString(R.string.file_name), System.currentTimeMillis())
         val outFile = File(storageDir, filename)
         try {
             outputStream = FileOutputStream(outFile)

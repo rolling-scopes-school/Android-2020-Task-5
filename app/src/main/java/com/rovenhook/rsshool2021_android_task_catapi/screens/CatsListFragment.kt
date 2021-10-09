@@ -58,7 +58,6 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
                 catList.addAll(it)
                 adapter.submitList(catList.toList())
                 binding.progressBar.isVisible = false
-
             }
         })
 

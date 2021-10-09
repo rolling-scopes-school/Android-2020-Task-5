@@ -20,7 +20,6 @@ import kotlinx.coroutines.test.setMain
 import org.junit.Assert.assertEquals
 import org.spekframework.spek2.Spek
 
-
 @ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
 class CatsViewModelTestSpek2 : Spek({
@@ -28,8 +27,7 @@ class CatsViewModelTestSpek2 : Spek({
     val repositoryMock: Repository = mockk<Repository>()
     val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
-    group("CatsViewModel testing using Spek2")
-    {
+    group("CatsViewModel testing using Spek2") {
         beforeEachTest {
             unmockkAll()
             clearAllMocks()

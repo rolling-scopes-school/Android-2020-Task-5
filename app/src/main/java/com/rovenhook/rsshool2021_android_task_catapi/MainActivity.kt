@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.rovenhook.rsshool2021_android_task_catapi.databinding.ActivityMainBinding
 import com.rovenhook.rsshool2021_android_task_catapi.screens.CatsListFragment
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
