@@ -2,10 +2,12 @@ package com.rovenhook.rsshool2021_android_task_catapi.screens
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -31,7 +33,15 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
     ): View {
         _binding = FragmentCatsListBinding.inflate(inflater, container, false)
 
-        val adapter = CatsAdapter(this as OnSmallImageClickListener)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = CatsAdapter(
+            this as OnSmallImageClickListener
+        )
         binding.recyclerViewCats.adapter = adapter
         val spanCount = when {
             this.getResources()
@@ -39,26 +49,27 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
             else -> 3
         }
         binding.recyclerViewCats.layoutManager = GridLayoutManager(context, spanCount)
+        viewModel.getMoreCats()
 
         viewModel.getAllCats().observe(viewLifecycleOwner, {
-            catList.addAll(it)
-            adapter.submitList(catList)
+            if (it.size > 0) {
+//                adapter.currentList.addAll(it)
+                catList.addAll(it)
+                adapter.submitList(catList.toList())
+                binding.progressBar.isVisible = false
+
+            }
         })
-        getCats()
 
         // indicates reaching the bottom of the screen
         binding.recyclerViewCats.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (!recyclerView.canScrollVertically(1)) {
+                    binding.progressBar.isVisible = true
                     viewModel.getMoreCats()
                 }
             }
         })
-        return binding.root
-    }
-
-    fun getCats() {
-        viewModel.getMoreCats()
     }
 
     override fun onSmallImageClick(imageView: ImageView) {

@@ -42,8 +42,6 @@ class DetailedViewFragment(private val imageView: ImageView) : Fragment() {
         // save photo
         binding.imageViewDetailed.setOnLongClickListener {
             askPermissionToWriteToStorage(binding.imageViewDetailed)
-
-            Log.i("log-tag", "long click confirmed")
             true
         }
         return binding.root

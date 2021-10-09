@@ -1,11 +1,14 @@
 package com.rovenhook.rsshool2021_android_task_catapi.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatApiImplementation
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.SocketTimeoutException
 
@@ -18,9 +21,14 @@ class CatsViewModel() : ViewModel() {
     fun getAllCats() = items
 
     fun getMoreCats() {
-        viewModelScope.launch {
+        viewModelScope.launch() {
             try {
-                _items.value = CatApiImplementation.getAllCats(page)
+                var temp: List<CatsApiData> = listOf()
+                while (temp.size <= 0) {
+                    temp = CatApiImplementation.getAllCats(page)
+                    delay(2000)
+                }
+                _items.value = temp
                 page++
             } catch (e: SocketTimeoutException) {
                 e.printStackTrace()

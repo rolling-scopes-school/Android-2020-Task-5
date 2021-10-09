@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.contracts.model.structure.UNKNOWN_COMPUTATION.type
+
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
@@ -112,8 +112,3 @@ detekt {
         }
     }
 }
-
-
-//task clean(type: Delete) {
-//    delete rootProject.buildDir
-//}
