@@ -2,7 +2,6 @@ package com.rovenhook.rsshool2021_android_task_catapi.screens
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rovenhook.rsshool2021_android_task_catapi.R
 import com.rovenhook.rsshool2021_android_task_catapi.adapters.CatsAdapter
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
+import com.rovenhook.rsshool2021_android_task_catapi.data.Repository
 import com.rovenhook.rsshool2021_android_task_catapi.databinding.FragmentCatsListBinding
 import com.rovenhook.rsshool2021_android_task_catapi.listeners.OnSmallImageClickListener
 import com.rovenhook.rsshool2021_android_task_catapi.viewmodels.CatsViewModel
@@ -25,6 +25,7 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
         get() = _binding ?: throw Exception("Binding error")
     private val viewModel: CatsViewModel by viewModels()
     private var catList: ArrayList<CatsApiData> = arrayListOf()
+    private val repository: Repository = Repository()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +50,7 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
             else -> 3
         }
         binding.recyclerViewCats.layoutManager = GridLayoutManager(context, spanCount)
-        viewModel.getMoreCats()
+        viewModel.getMoreCats(repository)
 
         viewModel.getAllCats().observe(viewLifecycleOwner, {
             if (it.size > 0) {
@@ -66,7 +67,7 @@ class CatsListFragment : Fragment(), OnSmallImageClickListener {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (!recyclerView.canScrollVertically(1)) {
                     binding.progressBar.isVisible = true
-                    viewModel.getMoreCats()
+                    viewModel.getMoreCats(repository)
                 }
             }
         })

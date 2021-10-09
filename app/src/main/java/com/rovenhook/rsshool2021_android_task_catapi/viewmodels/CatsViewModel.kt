@@ -7,12 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatApiImplementation
 import com.rovenhook.rsshool2021_android_task_catapi.data.CatsApiData
+import com.rovenhook.rsshool2021_android_task_catapi.data.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.SocketTimeoutException
 
-class CatsViewModel() : ViewModel() {
+class CatsViewModel : ViewModel() {
     private var page: Int = 0
 
     private val _items = MutableLiveData<List<CatsApiData>>()
@@ -20,13 +21,15 @@ class CatsViewModel() : ViewModel() {
 
     fun getAllCats() = items
 
-    fun getMoreCats() {
+    fun getMoreCats(repository: Repository) {
         viewModelScope.launch() {
             try {
                 var temp: List<CatsApiData> = listOf()
                 while (temp.size <= 0) {
-                    temp = CatApiImplementation.getAllCats(page)
-                    delay(2000)
+                    temp = repository.getMoreCats(page)
+                    if (temp.size <= 0) {
+                        delay(6000)
+                    }
                 }
                 _items.value = temp
                 page++
